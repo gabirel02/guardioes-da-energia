@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://bguq2ji1rhmln"]
 
 [node name="CenaInicial" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BarraEnergia" type="ProgressBar" parent="HUD"]
+custom_minimum_size = Vector2(600, 50)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_horizontal = 2
+step = 1.0
+value = 20.0
+
+[node name="FundoTiko" type="ColorRect" parent="HUD"]
+offset_right = 161.0
+offset_bottom = 135.0
+color = Color(0, 0.039215688, 0.5137255, 1)
+
+[node name="Label" type="Label" parent="HUD/FundoTiko"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TIKO: Olá, Guardião!"
