@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 # Variaveis para os limites
 var limite_esquerdo = -60

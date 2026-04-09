@@ -9,13 +9,13 @@ var acertos_treinamento = 0
 @onready var painel = $PainelSolar
 
 # Lembre-se de adicionar o botão Confirmar na tela depois!
-# @onready var botao_confirmar = $BotaoConfirmar 
+@onready var botao_confirmar = $BotaoConfirmar 
 
 func _ready():
 	# Esconde os botões no início
 	botao_esq.hide()
 	botao_dir.hide()
-	# botao_confirmar.hide()
+	botao_confirmar.hide()
 
 func sujeira_removida():
 	sujeiras_restantes -= 1
@@ -26,7 +26,7 @@ func iniciar_fase_alinhamento():
 	# Mostra os botões de girar
 	botao_esq.show()
 	botao_dir.show()
-	# botao_confirmar.show()
+	botao_confirmar.show()
 	
 	# Coloca o sol em um lugar aleatório para começar o treino
 	mudar_posicao_do_sol()
@@ -44,7 +44,7 @@ func verificar_alinhamento():
 	var angulo_em_graus = rad_to_deg(direcao_ao_sol) + 90 
 	
 	# Verifica se a rotação do painel está próxima ao que precisamos
-	if abs(painel.rotation_degrees - angulo_em_graus) < 15:
+	if abs(painel.rotation_degrees - angulo_em_graus) < 30:
 		acertos_treinamento += 1
 		print("Acertou! Lição: ", acertos_treinamento)
 		
@@ -58,5 +58,5 @@ func verificar_alinhamento():
 func iniciar_ia():
 	botao_esq.hide()
 	botao_dir.hide()
-	# botao_confirmar.hide()
+	botao_confirmar.hide()
 	print("Treinamento concluído! A IA assumiu o controle.")

@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 func _on_mouse_entered():
 	# A palavra 'owner' significa o Dono da cena inteira (nossa FaseSolar).
