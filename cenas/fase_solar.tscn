@@ -109,71 +109,231 @@ expand_mode = 1
 stretch_mode = 4
 script = ExtResource("1_fcjlr")
 
-[node name="BotaoEsquerda" type="Button" parent="."]
+[node name="PainelIA_Esq" type="TextureRect" parent="."]
+offset_left = 103.99994
+offset_top = 376.0
+offset_right = 353.99994
+offset_bottom = 496.0
+rotation = -0.34906584
+pivot_offset = Vector2(150, 75)
+texture = ExtResource("4_0bqm0")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_jjsvm")
+
+[node name="Sujeira1" type="TextureRect" parent="PainelIA_Esq"]
+layout_mode = 0
+offset_left = 26.295732
+offset_top = 52.32306
+offset_right = 76.29573
+offset_bottom = 102.32306
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira2" type="TextureRect" parent="PainelIA_Esq"]
+layout_mode = 0
+offset_left = 67.83221
+offset_top = 2.5262508
+offset_right = 117.83221
+offset_bottom = 52.526253
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira3" type="TextureRect" parent="PainelIA_Esq"]
+layout_mode = 0
+offset_left = 107.03329
+offset_top = 49.783783
+offset_right = 157.0333
+offset_bottom = 99.78378
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira4" type="TextureRect" parent="PainelIA_Esq"]
+layout_mode = 0
+offset_left = 179.90782
+offset_top = 57.15274
+offset_right = 229.90784
+offset_bottom = 107.15274
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira5" type="TextureRect" parent="PainelIA_Esq"]
+layout_mode = 0
+offset_left = 143.18726
+offset_top = 0.15625477
+offset_right = 193.18727
+offset_bottom = 50.156254
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="PainelIA_Dir" type="TextureRect" parent="."]
+offset_left = 936.0001
+offset_top = 419.00003
+offset_right = 1186.0001
+offset_bottom = 539.0
+rotation = -0.34906584
+pivot_offset = Vector2(150, 75)
+texture = ExtResource("4_0bqm0")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_jjsvm")
+
+[node name="Sujeira1" type="TextureRect" parent="PainelIA_Dir"]
+layout_mode = 0
+offset_left = 26.295732
+offset_top = 52.32306
+offset_right = 76.29573
+offset_bottom = 102.32306
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira2" type="TextureRect" parent="PainelIA_Dir"]
+layout_mode = 0
+offset_left = 62.960846
+offset_top = 7.138256
+offset_right = 112.960846
+offset_bottom = 57.138256
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira3" type="TextureRect" parent="PainelIA_Dir"]
+layout_mode = 0
+offset_left = 85.75882
+offset_top = 52.68226
+offset_right = 135.75882
+offset_bottom = 102.68226
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira4" type="TextureRect" parent="PainelIA_Dir"]
+layout_mode = 0
+offset_left = 156.24266
+offset_top = 60.92717
+offset_right = 206.24268
+offset_bottom = 104.92436
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="Sujeira5" type="TextureRect" parent="PainelIA_Dir"]
+layout_mode = 0
+offset_left = 153.26813
+offset_top = 1.6970015
+offset_right = 203.26814
+offset_bottom = 51.697002
+texture = ExtResource("6_oh7hx")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("1_fcjlr")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="BarraInferior" type="ColorRect" parent="."]
+offset_top = 570.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.52906674, 0.5290667, 0.5290667, 1)
+
+[node name="BalaoFala" type="Panel" parent="BarraInferior"]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 1125.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bqm0")
+
+[node name="Label" type="Label" parent="BarraInferior/BalaoFala"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="FundoTiko" type="TextureRect" parent="BarraInferior"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("11_65fn7")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="GrupoBotoes" type="Control" parent="BarraInferior"]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 150.0
+
+[node name="BotaoEsquerda" type="Button" parent="BarraInferior/GrupoBotoes"]
 custom_minimum_size = Vector2(150, 100)
-offset_left = 50.0
-offset_top = 590.0
-offset_right = 200.0
-offset_bottom = 710.0
+layout_mode = 0
+offset_left = 132.0
+offset_top = 20.0
+offset_right = 282.0
+offset_bottom = 140.0
 theme_override_font_sizes/font_size = 50
 icon = ExtResource("8_jos4b")
 flat = true
 expand_icon = true
 
-[node name="BotaoDireito" type="Button" parent="."]
+[node name="BotaoDireito" type="Button" parent="BarraInferior/GrupoBotoes"]
 custom_minimum_size = Vector2(150, 100)
-offset_left = 1080.0
-offset_top = 590.0
-offset_right = 1230.0
-offset_bottom = 710.0
+layout_mode = 0
+offset_left = 1004.0
+offset_top = 20.0
+offset_right = 1154.0
+offset_bottom = 140.0
 theme_override_font_sizes/font_size = 50
 icon = ExtResource("9_taeh5")
 flat = true
 expand_icon = true
 
-[node name="BotaoConfirmar" type="Button" parent="."]
+[node name="BotaoConfirmar" type="Button" parent="BarraInferior/GrupoBotoes"]
+layout_mode = 0
 offset_left = 540.0
-offset_top = 590.0
+offset_top = 20.0
 offset_right = 840.0
-offset_bottom = 710.0
+offset_bottom = 140.0
 icon = ExtResource("10_rhstg")
 flat = true
 expand_icon = true
-
-[node name="FundoTiko" type="TextureRect" parent="."]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 143.0
-offset_bottom = 143.0
-texture = ExtResource("11_65fn7")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="BalaoFala" type="Panel" parent="."]
-offset_left = 130.0
-offset_top = 15.0
-offset_right = 780.0
-offset_bottom = 143.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0bqm0")
-
-[node name="Label" type="Label" parent="BalaoFala"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 20.0
-offset_right = 625.0
-offset_bottom = 108.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "Olá Mundo!
-"
-vertical_alignment = 1
-autowrap_mode = 2
 
 [connection signal="mouse_entered" from="PainelSolar/Sujeira1" to="PainelSolar/Sujeira1" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelSolar/Sujeira2" to="PainelSolar/Sujeira2" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelSolar/Sujeira3" to="PainelSolar/Sujeira3" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelSolar/Sujeira4" to="PainelSolar/Sujeira4" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelSolar/Sujeira5" to="PainelSolar/Sujeira5" method="_on_mouse_entered"]
-[connection signal="pressed" from="BotaoEsquerda" to="PainelSolar" method="girar_esquerda"]
-[connection signal="pressed" from="BotaoDireito" to="PainelSolar" method="girar_direita"]
-[connection signal="pressed" from="BotaoConfirmar" to="." method="verificar_alinhamento"]
+[connection signal="mouse_entered" from="PainelIA_Esq/Sujeira1" to="PainelIA_Esq/Sujeira1" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Esq/Sujeira2" to="PainelIA_Esq/Sujeira2" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Esq/Sujeira3" to="PainelIA_Esq/Sujeira3" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Esq/Sujeira4" to="PainelIA_Esq/Sujeira4" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Esq/Sujeira5" to="PainelIA_Esq/Sujeira5" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Dir/Sujeira1" to="PainelIA_Dir/Sujeira1" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Dir/Sujeira2" to="PainelIA_Dir/Sujeira2" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Dir/Sujeira3" to="PainelIA_Dir/Sujeira3" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Dir/Sujeira4" to="PainelIA_Dir/Sujeira4" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="PainelIA_Dir/Sujeira5" to="PainelIA_Dir/Sujeira5" method="_on_mouse_entered"]
+[connection signal="pressed" from="BarraInferior/GrupoBotoes/BotaoEsquerda" to="PainelSolar" method="girar_esquerda"]
+[connection signal="pressed" from="BarraInferior/GrupoBotoes/BotaoDireito" to="PainelSolar" method="girar_direita"]
+[connection signal="pressed" from="BarraInferior/GrupoBotoes/BotaoConfirmar" to="." method="verificar_alinhamento"]

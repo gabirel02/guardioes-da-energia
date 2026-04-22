@@ -1,8 +1,8 @@
 extends TextureRect
 
 # Variaveis para os limites
-var limite_esquerdo = -60
-var limite_direito = 60
+var limite_esquerdo = -80
+var limite_direito = 80
 
 func girar_esquerda():
 	# Só gira se ainda não bateu no limite esquerdo
