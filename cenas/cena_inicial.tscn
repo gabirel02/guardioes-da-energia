@@ -1,28 +1,75 @@
-[gd_scene format=3 uid="uid://bguq2ji1rhmln"]
+[gd_scene load_steps=3 format=3 uid="uid://bguq2ji1rhmln"]
+
+[ext_resource type="Script" uid="uid://dj2kyd0el8gn7" path="res://scripts/cena_inicial.gd" id="1_f2vne"]
+[ext_resource type="Texture2D" path="res://assets/tela_inicial.png" id="2_bg01"]
 
 [node name="CenaInicial" type="Node2D"]
+script = ExtResource("1_f2vne")
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="FundoCor" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 1000.0
+color = Color(0.02745098, 0.7411765, 1, 1)
 
-[node name="BarraEnergia" type="ProgressBar" parent="HUD"]
-custom_minimum_size = Vector2(600, 50)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 50.0
-grow_horizontal = 2
-step = 1.0
-value = 20.0
+[node name="Fundo" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 1000.0
+texture = ExtResource("2_bg01")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="FundoTiko" type="ColorRect" parent="HUD"]
-offset_right = 161.0
-offset_bottom = 135.0
-color = Color(0, 0.039215688, 0.5137255, 1)
+[node name="CamadaBotoes" type="Control" parent="."]
+offset_right = 1280.0
+offset_bottom = 1000.0
+mouse_filter = 2
 
-[node name="Label" type="Label" parent="HUD/FundoTiko"]
+[node name="BotaoVamosJogar" type="Button" parent="CamadaBotoes"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "TIKO: Olá, Guardião!"
+offset_left = 903.4
+offset_top = 839.5
+offset_right = 1263.1
+offset_bottom = 956.5
+flat = true
+text = ""
+
+[node name="IconeSolar" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 22.9
+offset_top = 244.4
+offset_right = 329.2
+offset_bottom = 552.6
+flat = true
+text = ""
+
+[node name="IconeEolica" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 903.4
+offset_top = 244.4
+offset_right = 1263.1
+offset_bottom = 616.4
+flat = true
+text = ""
+
+[node name="IconeHidro" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 444.1
+offset_top = 690.7
+offset_right = 803.8
+offset_bottom = 1000.0
+flat = true
+text = ""
+
+[node name="BotaoSair" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 28.0
+offset_right = 1266.0
+offset_bottom = 108.0
+flat = true
+text = ""
+
+[connection signal="pressed" from="CamadaBotoes/BotaoSair" to="." method="_on_botao_sair_pressed"]
+[connection signal="pressed" from="CamadaBotoes/BotaoVamosJogar" to="." method="_on_botao_jogar_pressed"]
+[connection signal="pressed" from="CamadaBotoes/IconeSolar" to="." method="_on_btn_solar_pressed"]
+[connection signal="pressed" from="CamadaBotoes/IconeEolica" to="." method="_on_btn_eolica_pressed"]
+[connection signal="pressed" from="CamadaBotoes/IconeHidro" to="." method="_on_btn_hidro_pressed"]

@@ -1,5 +1,8 @@
 extends TextureRect
 
+# O pivot_offset de cada painel fica no centro dele (definido na cena), e o centro
+# do painel fica em cima dos suportes da base. Assim ele gira sem sair da base.
+
 # Variaveis para os limites
 var limite_esquerdo = -80
 var limite_direito = 80

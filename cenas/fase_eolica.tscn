@@ -1,0 +1,262 @@
+[gd_scene load_steps=13 format=3 uid="uid://qkrii7k1sjut"]
+
+[ext_resource type="Script" uid="uid://burh7h880th2b" path="res://scripts/fase_eolica.gd" id="1_rj6nv"]
+[ext_resource type="Texture2D" uid="uid://lp0a4vu1fp14" path="res://assets/fundoEolica.png" id="2_fqgoa"]
+[ext_resource type="Texture2D" uid="uid://dfjcglixybejd" path="res://assets/base.png" id="3_8am83"]
+[ext_resource type="Texture2D" uid="uid://cvycycjrl4bbd" path="res://assets/helice.png" id="4_q3pl7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol8c7"]
+bg_color = Color(0.21960784, 0.89411765, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qapp7"]
+bg_color = Color(0.90529406, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fundobarra"]
+bg_color = Color(0.05, 0.25, 0.45, 0.75)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_freio"]
+bg_color = Color(0.86, 0.2, 0.2, 1)
+border_width_bottom = 8
+border_color = Color(0.55, 0.08, 0.08, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_freio_hover"]
+bg_color = Color(0.95, 0.32, 0.32, 1)
+border_width_bottom = 8
+border_color = Color(0.55, 0.08, 0.08, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_freio_pressed"]
+bg_color = Color(0.6, 0.1, 0.1, 1)
+border_width_top = 6
+border_color = Color(0.4, 0.05, 0.05, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_painelvento"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
+
+[node name="FaseEolica" type="Node2D"]
+script = ExtResource("1_rj6nv")
+
+[node name="FundoCeu" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fqgoa")
+expand_mode = 2
+
+[node name="ParticulasVento" type="CPUParticles2D" parent="."]
+position = Vector2(-150, 360)
+scale = Vector2(0.1, 0.1)
+amount = 20
+lifetime = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 360)
+gravity = Vector2(0, 0)
+initial_velocity_max = 300.0
+scale_amount_min = 0.05
+scale_amount_max = 0.15
+
+[node name="TurbinaEsq" type="Node2D" parent="."]
+
+[node name="BaseSprite" type="Sprite2D" parent="TurbinaEsq"]
+position = Vector2(250, 429)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_8am83")
+
+[node name="HeliceSprite" type="Sprite2D" parent="TurbinaEsq"]
+position = Vector2(250, 356.4)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("4_q3pl7")
+offset = Vector2(0, -88)
+
+[node name="TurbinaDir" type="Node2D" parent="."]
+
+[node name="BaseSprite" type="Sprite2D" parent="TurbinaDir"]
+position = Vector2(1030, 429)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_8am83")
+
+[node name="HeliceSprite" type="Sprite2D" parent="TurbinaDir"]
+position = Vector2(1030, 356.4)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("4_q3pl7")
+offset = Vector2(0, -88)
+
+[node name="Turbina" type="Node2D" parent="."]
+
+[node name="BaseSprite" type="Sprite2D" parent="Turbina"]
+position = Vector2(632.75, 424.5)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_8am83")
+
+[node name="HeliceSprite" type="Sprite2D" parent="Turbina"]
+position = Vector2(632.75, 317.75)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_q3pl7")
+offset = Vector2(0, -88)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="TextoEnergia" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 12.0
+offset_right = 450.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "ENERGIA"
+
+[node name="BarraEnergia" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 52.0
+offset_right = 450.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_fundobarra")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ol8c7")
+show_percentage = false
+
+[node name="TextoDano" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 12.0
+offset_right = 1230.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "ESTRAGO DA TURBINA"
+horizontal_alignment = 2
+
+[node name="BarraDano" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 52.0
+offset_right = 1230.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_fundobarra")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qapp7")
+show_percentage = false
+
+[node name="CamadaBotoes" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BarraInferior" type="ColorRect" parent="CamadaBotoes"]
+offset_top = 720.0
+offset_right = 1280.0
+offset_bottom = 850.0
+mouse_filter = 2
+color = Color(0.5294118, 0.5294118, 0.5294118, 0)
+
+[node name="GrupoBotoes" type="Control" parent="CamadaBotoes/BarraInferior"]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 130.0
+mouse_filter = 2
+
+[node name="PainelVento" type="Panel" parent="CamadaBotoes/BarraInferior/GrupoBotoes"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 410.0
+offset_bottom = 112.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_painelvento")
+
+[node name="TextoVento" type="Label" parent="CamadaBotoes/BarraInferior/GrupoBotoes/PainelVento"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.1, 0.55, 0.1, 1)
+theme_override_font_sizes/font_size = 34
+text = "VENTO FRACO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotaoFreio" type="Button" parent="CamadaBotoes/BarraInferior/GrupoBotoes"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 16.0
+offset_right = 840.0
+offset_bottom = 116.0
+pivot_offset = Vector2(200, 50)
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+theme_override_styles/normal = SubResource("StyleBoxFlat_freio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_freio_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_freio_pressed")
+text = "FREIO"
+
+[node name="TextoEspaco" type="Label" parent="CamadaBotoes/BarraInferior/GrupoBotoes"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 20.0
+offset_right = 1250.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 26
+text = "Segure o botão
+ou a barra de ESPAÇO"
+horizontal_alignment = 1
+vertical_alignment = 1
