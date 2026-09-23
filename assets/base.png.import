@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ycdsjkr8hl8y"
-path="res://.godot/imported/painel_solar.png-82373604ebcbbe9b7e32204118877e19.ctex"
+uid="uid://dfjcglixybejd"
+path="res://.godot/imported/base.png-03425f446c9e938e6abc19b9a378bb50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/painel_solar.png"
-dest_files=["res://.godot/imported/painel_solar.png-82373604ebcbbe9b7e32204118877e19.ctex"]
+source_file="res://assets/base.png"
+dest_files=["res://.godot/imported/base.png-03425f446c9e938e6abc19b9a378bb50.ctex"]
 
 [params]
 

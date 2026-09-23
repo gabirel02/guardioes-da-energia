@@ -1,0 +1,332 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwokj1frymroa"]
+
+[ext_resource type="Script" uid="uid://wfcs4i7t8bdx" path="res://scripts/cena_principal.gd" id="1_ikat4"]
+[ext_resource type="Texture2D" uid="uid://drf3ocuklqwgr" path="res://assets/robot.png" id="2_ymfkh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_307yd"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_barratiko"]
+bg_color = Color(0.05, 0.25, 0.45, 1)
+border_width_top = 6
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_controles"]
+bg_color = Color(0.86, 0.95, 1, 1)
+border_width_top = 6
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moldura"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nometiko"]
+bg_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tutpainel"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tutbotao"]
+bg_color = Color(0.21960784, 0.7, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tutbotao_hover"]
+bg_color = Color(0.3, 0.82, 0.28, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botaosair"]
+bg_color = Color(0.86, 0.2, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botaosair_hover"]
+bg_color = Color(0.95, 0.32, 0.32, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="CenaPrincipal_tscn" type="Node"]
+script = ExtResource("1_ikat4")
+
+[node name="ContentorDeFase" type="Node" parent="."]
+
+[node name="InterfaceTiko" type="CanvasLayer" parent="."]
+
+[node name="FundoBarra" type="Panel" parent="InterfaceTiko"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_barratiko")
+metadata/_edit_use_anchors_ = true
+
+[node name="Moldura" type="Panel" parent="InterfaceTiko/FundoBarra"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 142.0
+offset_bottom = 132.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_moldura")
+
+[node name="Tiko" type="TextureRect" parent="InterfaceTiko/FundoBarra"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 16.0
+offset_right = 134.0
+offset_bottom = 124.0
+mouse_filter = 2
+texture = ExtResource("2_ymfkh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NomeTiko" type="Panel" parent="InterfaceTiko/FundoBarra"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 116.0
+offset_right = 122.0
+offset_bottom = 144.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nometiko")
+
+[node name="Label" type="Label" parent="InterfaceTiko/FundoBarra/NomeTiko"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "TIKO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BalaoFala" type="Panel" parent="InterfaceTiko/FundoBarra"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 16.0
+offset_right = 1262.0
+offset_bottom = 136.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_307yd")
+
+[node name="Label" type="Label" parent="InterfaceTiko/FundoBarra/BalaoFala"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_right = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 32
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CaudaBorda" type="Polygon2D" parent="InterfaceTiko/FundoBarra/BalaoFala"]
+color = Color(0.02745098, 0.7411765, 1, 1)
+polygon = PackedVector2Array(6, 37, 6, 83, -22, 60)
+
+[node name="CaudaFundo" type="Polygon2D" parent="InterfaceTiko/FundoBarra/BalaoFala"]
+polygon = PackedVector2Array(8, 42, 8, 78, -14, 60)
+
+[node name="FundoControles" type="Panel" parent="InterfaceTiko"]
+offset_top = 720.0
+offset_right = 1280.0
+offset_bottom = 850.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_controles")
+
+[node name="CamadaVitoria" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="FundoEscuro" type="ColorRect" parent="CamadaVitoria"]
+offset_right = 1280.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="PopUpVitoria" type="Panel" parent="CamadaVitoria"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -275.0
+offset_right = 320.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tutpainel")
+
+[node name="Titulo" type="Label" parent="CamadaVitoria/PopUpVitoria"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 610.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 48
+text = "FASE CONCLUÍDA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Estrelas" type="Control" parent="CamadaVitoria/PopUpVitoria"]
+layout_mode = 0
+offset_top = 105.0
+offset_right = 640.0
+offset_bottom = 195.0
+mouse_filter = 2
+
+[node name="LabelPontuacao" type="Label" parent="CamadaVitoria/PopUpVitoria"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 200.0
+offset_right = 600.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Você fez 0 de 100 pontos!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CamadaVitoria/PopUpVitoria"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 320.0
+offset_right = 520.0
+offset_bottom = 500.0
+theme_override_constants/separation = 20
+
+[node name="BtnMenu" type="Button" parent="CamadaVitoria/PopUpVitoria/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_tutbotao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tutbotao_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tutbotao")
+text = "Voltar ao Menu"
+
+[node name="BtnSair" type="Button" parent="CamadaVitoria/PopUpVitoria/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_botaosair")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botaosair_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botaosair")
+text = "Sair do Jogo"
+
+[node name="CamadaTutorial" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 4
+visible = false
+
+[node name="FundoEscuro" type="ColorRect" parent="CamadaTutorial"]
+offset_right = 1280.0
+offset_bottom = 850.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="PainelTutorial" type="Panel" parent="CamadaTutorial"]
+offset_left = 140.0
+offset_top = 25.0
+offset_right = 1140.0
+offset_bottom = 705.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tutpainel")
+
+[node name="Titulo" type="Label" parent="CamadaTutorial/PainelTutorial"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 970.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 48
+text = "Como jogar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Passos" type="Label" parent="CamadaTutorial/PainelTutorial"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 95.0
+offset_right = 955.0
+offset_bottom = 575.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 12
+theme_override_font_sizes/font_size = 28
+text = "1. Passo"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BtnEntendi" type="Button" parent="CamadaTutorial/PainelTutorial"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 585.0
+offset_right = 650.0
+offset_bottom = 665.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tutbotao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tutbotao_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tutbotao")
+text = "Entendi!"
+
+[connection signal="pressed" from="CamadaVitoria/PopUpVitoria/VBoxContainer/BtnMenu" to="." method="_on_btn_menu_pressed"]
+[connection signal="pressed" from="CamadaVitoria/PopUpVitoria/VBoxContainer/BtnSair" to="." method="_on_btn_sair_pressed"]

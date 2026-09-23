@@ -5,6 +5,7 @@ var rodadas_treinamento = 0
 var pontuacao_ia = 0.0
 var tempo_inicio_rodada: int = 0
 var tempo_gasto: float = 0.0
+var notas_rodadas: Array = [] # Nota (0 a 100) de cada rodada de alinhamento
 var q_table = {}
 var alpha = 0.2  
 var gamma = 0.9  
@@ -16,45 +17,59 @@ var epsilon = 0.2
 @export var altura_arco: float = 550.0
 
 @onready var ceu: TextureRect = $Ceu
-@onready var botao_esq = $BarraInferior/GrupoBotoes/BotaoEsquerda
-@onready var botao_dir = $BarraInferior/GrupoBotoes/BotaoDireito
-@onready var botao_confirmar = $BarraInferior/GrupoBotoes/BotaoConfirmar
+@onready var botao_esq = $CamadaBotoes/BarraInferior/GrupoBotoes/BotaoEsquerda
+@onready var botao_dir = $CamadaBotoes/BarraInferior/GrupoBotoes/BotaoDireito
+@onready var botao_confirmar = $CamadaBotoes/BarraInferior/GrupoBotoes/BotaoConfirmar
 @onready var sol = $Sol
 @onready var painel = $PainelSolar
-@onready var tiko_label: Label = $BarraInferior/BalaoFala/Label
 @onready var painel_ia_dir: TextureRect = $PainelIA_Dir
 @onready var painel_ia_esq: TextureRect = $PainelIA_Esq
-@onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
-@onready var grupo_botoes = $BarraInferior/GrupoBotoes
-@onready var balao_fala = $BarraInferior/BalaoFala
+@onready var grupo_botoes = $CamadaBotoes/BarraInferior/GrupoBotoes
+@onready var painel_contador = $CamadaBotoes/PainelContador
+@onready var texto_contador = $CamadaBotoes/PainelContador/TextoContador
+
+const TOTAL_SUJEIRAS = 15
+const TOTAL_RODADAS = 3
+var alinhamento_ativo: bool = false # Só aceita o teclado enquanto o jogador alinha o painel
 
 var linha_arco: Line2D
 var erro_da_ia: float = 0.0
 
+# Falas do Tiko (sem áudio por enquanto)
 var falas = {
-	1: {"texto": "Olá, Guardião! Eu sou o Tiko. Passe a mão para limpar o painel.", "audio": preload("res://assets/fala1.mp3")},
-	2: {"texto": "Muito bem! Continue limpando.", "audio": preload("res://assets/fala2.mp3")},
-	3: {"texto": "Painel limpo! Excelente trabalho. Agora, vamos calibrar o sistema.", "audio": preload("res://assets/fala3.mp3")},
-	4: {"texto": "Nova posição do Sol! Use as setas e clique em confirmar.", "audio": preload("res://assets/fala4.mp3")},
-	5: {"texto": "Quase lá! Tente ajustar mais um pouquinho.", "audio": preload("res://assets/fala5.mp3")},
-	6: {"texto": "Incrível! A IA está aprendendo. Próximo Sol!", "audio": preload("res://assets/fala6.mp3")},
-	7: {"texto": "Treino concluído! Veja a IA trabalhando sozinha!", "audio": preload("res://assets/fala7.mp3")}
+	1: {"texto": "Oi, eu sou o Tiko! Passe o mouse nas manchas para limpar os 3 painéis."},
+	2: {"texto": "Muito bem! Falta pouco!"},
+	3: {"texto": "O painel está limpo! Agora vamos virar o painel para o sol."},
+	4: {"texto": "Use GIRAR para virar o painel. Depois, clique em CONFIRMAR."},
+	5: {"texto": "Quase! Vire mais um pouquinho."},
+	6: {"texto": "Muito bem! A IA aprendeu com você. Vamos para o próximo sol!"},
+	7: {"texto": "Pronto! Agora veja a IA virar os painéis sozinha!"}
 }
 
+var passos_tutorial = [
+	"Passe o mouse em cima das manchas para limpar os 3 painéis solares.",
+	"Use os botões GIRAR (ou as setas do teclado) para virar o painel do meio para o sol.",
+	"Com o painel virado para o sol, clique em CONFIRMAR (ou Enter). Quanto mais certinho, mais pontos!",
+	"Você vai fazer isso 3 vezes. A IA aprende com você e depois vira os painéis sozinha!"
+]
+
 func _ready():
-	
+
 	# Esconde os botões no começo
 	modo_dialogo()
-	tocar_tiko(1)
-	
+
 	# Cria a linha vermelha por cima de tudo na tela!
 	linha_arco = Line2D.new()
 	linha_arco.default_color = Color.RED
 	linha_arco.width = 4.0
 	add_child(linha_arco) # O add_child garante que ela fique na frente
-	
-	desenhar_arco()
-	
+
+	#desenhar_arco()
+
+	# Mostra o tutorial antes de a fase começar
+	await GameManager.exibir_tutorial("solar", "Usina Solar", passos_tutorial)
+	tocar_tiko(1)
+
 func desenhar_arco():
 	var pontos = PackedVector2Array()
 	# Faz um arco suave de 20 a 160 graus
@@ -69,6 +84,7 @@ func desenhar_arco():
 
 func sujeira_removida():
 	sujeiras_restantes -= 1
+	texto_contador.text = "Manchas limpas: " + str(TOTAL_SUJEIRAS - sujeiras_restantes) + " de " + str(TOTAL_SUJEIRAS)
 	if sujeiras_restantes == 2:
 		tocar_tiko(2)
 	elif sujeiras_restantes <= 0:
@@ -77,7 +93,9 @@ func sujeira_removida():
 
 func iniciar_fase_alinhamento():
 	modo_jogo()
+	alinhamento_ativo = true
 	mudar_posicao_do_sol()
+	tocar_tiko(4)
 
 func mudar_posicao_do_sol():
 	var angulo_aleatorio = randf_range(20, 160)
@@ -92,10 +110,10 @@ func mudar_posicao_do_sol():
 	sol.position = Vector2(novo_x - (sol.size.x / 2), novo_y - (sol.size.y / 2))	
 	# Inicia o cronômetro para medir o tempo de reação
 	tempo_inicio_rodada = Time.get_ticks_msec()
-	#tiko_label.text = "TIKO: Nova posição do Sol! Alinhe o painel."
+	texto_contador.text = "Sol " + str(rodadas_treinamento + 1) + " de " + str(TOTAL_RODADAS)
 
 func verificar_alinhamento():
-	# Calcula o tempo que o jogador demorou (em segundos)
+	# Calcula o tempo que o jogador demorou
 	tempo_gasto = (Time.get_ticks_msec() - tempo_inicio_rodada) / 1000.0
 	
 	var centro_do_sol = sol.position + (sol.size / 2)
@@ -105,43 +123,55 @@ func verificar_alinhamento():
 	
 	var erro_em_graus = abs(wrapf(painel.rotation_degrees - angulo_ideal, -180.0, 180.0))
 	
-	# NOVA RECOMPENSA: Perde nota se errou muito o ângulo E se demorou muito!
-	# Ex: Penalidade de 5 pontos por segundo demorado.
-	var recompensa = 100.0 - (erro_em_graus / 180.0 * 100.0) - (tempo_gasto * 5.0)
-	recompensa = clamp(recompensa, 0.0, 100.0) # Garante que não passe de 100 nem de 0
-	
-	pontuacao_ia += recompensa
+	# PRECISÃO: as setas giram de 15 em 15 graus, então errar até 7.5° é o melhor possível (100).
+	# Depois disso perde pontos até zerar com 67.5° de erro.
+	var precisao = clamp(100.0 - (erro_em_graus - 7.5) * (100.0 / 60.0), 0.0, 100.0)
+
+	# TEMPO: os primeiros 15 segundos são livres; depois perde 2 pontos por segundo (no máximo 30)
+	var penalidade_tempo = clamp((tempo_gasto - 15.0) * 2.0, 0.0, 30.0)
+
+	var recompensa = clamp(precisao - penalidade_tempo, 0.0, 100.0)
+	notas_rodadas.append(recompensa)
+	# A IA aprende AGORA com base nesta rodada específica
+	aprender_com_rodada(recompensa, angulo_ideal)
+
 	rodadas_treinamento += 1
-	
-	if rodadas_treinamento < 3: 
-		tiko_label.text = "TIKO: Ganho de " + str(round(recompensa)) + "%! A IA está aprendendo. Próximo sol!"
+
+	if rodadas_treinamento < 3:
+		GameManager.tiko_diz.emit("Você fez " + str(round(recompensa)) + " pontos! A IA aprendeu com você. Vamos para o próximo sol!")
 		mudar_posicao_do_sol()
 	else:
 		iniciar_ia()
-	
-	print("Rodada: ", rodadas_treinamento, " | Erro: ", round(erro_em_graus), " graus | Ganho: ", round(recompensa), "%")
 
 func iniciar_ia():
 	modo_dialogo()
-	var media_aprendizado = clamp(round(pontuacao_ia / 3.0), 0.0, 100.0)
-	
-	# A CURVA EXPONENCIAL:
-	# 100% de Nota -> Multiplicador 1.0 -> 500 episódios (Fica Mestre)
-	# 50% de Nota  -> Multiplicador 0.125 -> 62 episódios (Fica Manco)
-	# 20% de Nota  -> Multiplicador 0.008 -> 4 episódios (Fica Completamente Burra)
-	var multiplicador = pow(media_aprendizado / 100.0, 3.0)
-	var episodios_de_treino = int(multiplicador * 500)
-	
-	# Roda o super loop de aprendizado na hora!
-	treinar_qlearning(episodios_de_treino)
-	
-	tiko_label.text = "TIKO: A IA aprendeu com " + str(media_aprendizado) + "% de precisão! Veja ela trabalhando."
+	alinhamento_ativo = false
+	painel_contador.hide()
+
+	# PONTUAÇÃO DA FASE: 10 pontos pela limpeza + até 90 pela média das 3 rodadas
+	var media = 0.0
+	for nota in notas_rodadas:
+		media += nota
+	media /= max(1, notas_rodadas.size())
+	GameManager.registrar_pontuacao("solar", 10.0 + media * 0.9)
+
+	GameManager.tiko_diz.emit(falas[7]["texto"])
+	await GameManager.tiko_terminou_falar 
 	
 	var tween = create_tween()
 	tween.tween_method(passagem_do_tempo, 20.0, 160.0, 10.0)
+	await tween.finished
+	
+	if GameManager.modo_continuo:
+		GameManager.tiko_diz.emit("Muito bem! Agora vamos para a usina de vento!")
+		await GameManager.tiko_terminou_falar
+		GameManager.pedir_nova_fase.emit("res://cenas/fase_eolica.tscn")
+	else:
+		GameManager.tiko_diz.emit("Muito bem! Você terminou a usina solar!")
+		await GameManager.tiko_terminou_falar
+		GameManager.mostrar_vitoria.emit()
 
 func obter_estado(ang_sol: float, ang_painel: float) -> int:
-	# Agrupamos as diferenças em "baldes" de 15 graus para a tabela não ficar gigante
 	var diff = wrapf(ang_sol - ang_painel, -180.0, 180.0)
 	return int(round(diff / 15.0) * 15)
 
@@ -151,11 +181,9 @@ func escolher_acao(estado: int, explorando: bool) -> int:
 	if not q_table.has(estado):
 		q_table[estado] = {-15: 0.0, 0: 0.0, 15: 0.0}
 		
-	# MODO EXPLORAÇÃO (Durante o Treino Interno)
 	if explorando and randf() < epsilon:
 		return acoes[randi() % acoes.size()]
 		
-	# MODO PRÁTICA (Valendo)
 	var max_q = -INF
 	var melhores_acoes = []
 	
@@ -163,26 +191,23 @@ func escolher_acao(estado: int, explorando: bool) -> int:
 		var valor_q = q_table[estado][acao]
 		if valor_q > max_q:
 			max_q = valor_q
-			melhores_acoes = [acao] # Encontrou um vencedor claro, reseta a lista
+			melhores_acoes = [acao] 
 		elif valor_q == max_q:
-			melhores_acoes.append(acao) # Deu empate (ex: tudo zero), adiciona na lista
+			melhores_acoes.append(acao) 
 			
-	# SEGREDO DA IA CONFUSA: Se houver empate (várias ações com nota 0), ela escolhe aleatório!
-	# Isso faz o painel "tremer" tentando adivinhar o lado certo.
 	if melhores_acoes.has(0):
 		return 0
 	else:
 		return melhores_acoes[0]
 
-func treinar_qlearning(numero_de_episodios: int):
-	# Limpa o cérebro antigo se houver
-	q_table.clear() 
+func aprender_com_rodada(nota_jogador: float, angulo_sol_atual: float):
+	var peso = pow(nota_jogador / 100.0, 2.0) 
+	var episodios_desta_rodada = int(150 * peso)
 	
-	for i in range(numero_de_episodios):
-		var sol_treino = randf_range(20, 160)
+	for i in range(episodios_desta_rodada):
+		var sol_treino = clamp(angulo_sol_atual + randf_range(-30, 30), 20, 160)
 		var painel_treino = randf_range(20, 160)
 		
-		# A IA tenta alinhar em no máximo 15 passos
 		for step in range(15): 
 			var estado_atual = obter_estado(sol_treino, painel_treino)
 			var acao = escolher_acao(estado_atual, true)
@@ -190,9 +215,6 @@ func treinar_qlearning(numero_de_episodios: int):
 			var novo_painel = painel_treino + acao
 			var novo_estado = obter_estado(sol_treino, novo_painel)
 			
-			# A PENALIDADE DA IA (Recompensa): 
-			# - Abs do erro de ângulo (pune estar longe)
-			# - 10 pontos por ter que se mover (pune o tempo gasto para chegar lá)
 			var penalidade_erro = abs(novo_estado)
 			var penalidade_tempo = 10.0 if acao != 0 else 0.0
 			var recompensa = -penalidade_erro - penalidade_tempo
@@ -200,7 +222,6 @@ func treinar_qlearning(numero_de_episodios: int):
 			if not q_table.has(novo_estado):
 				q_table[novo_estado] = {-15: 0.0, 0: 0.0, 15: 0.0}
 				
-			# O coração do Q-Learning (A Fórmula de atualização)
 			var max_q_novo = -INF
 			for val in q_table[novo_estado].values():
 				if val > max_q_novo: max_q_novo = val
@@ -209,7 +230,6 @@ func treinar_qlearning(numero_de_episodios: int):
 			
 			painel_treino = novo_painel
 			
-			# Se acertou em cheio, acaba a rodada
 			if penalidade_erro == 0:
 				break
 
@@ -221,24 +241,20 @@ func passagem_do_tempo(angulo_atual: float):
 	sol.position = Vector2(novo_x - (sol.size.x / 2), novo_y - (sol.size.y / 2))
 	
 	# 2. O TRUQUE DA TRANSIÇÃO SUAVE
-	# O progresso normal vai de 0.0 (início) a 1.0 (fim)
 	var progresso_linear = (angulo_atual - 20.0) / 140.0 
-	
-	# Usamos pow() para criar uma "curva". Isso faz a cor mudar bem devagar
-	# no começo e acelerar no final, simulando um entardecer real!
 	var progresso_suave = pow(progresso_linear, 2.5)
 	
-	# 3. MUDA A COR DO SOL (De Amarelo Brilhante para Laranja Avermelhado)
+	# 3. MUDA A COR DO SOL
 	sol.modulate = Color(1.0, 1.0, 0.0).lerp(Color(1.0, 0.55, 0.0), progresso_suave)
 	
 	# 4. MUDA A COR DO CÉU E DA GRAMA
-	# O branco (1, 1, 1) mantém a sua imagem original intacta.
-	# O segundo tom cria um "filtro" quente que escurece o azul do céu e a grama.
 	ceu.modulate = Color(1.0, 1.0, 1.0).lerp(Color(0.15, 0.15, 0.35), progresso_suave)
 	
-	# 5. MANDA OS PAINÉIS DA IA SEGUIREM O SOL
+	# 5. MANDA OS PAINÉIS DA IA (E O DO MEIO) SEGUIREM O SOL
 	alinhar_painel_ia(painel_ia_esq)
+	alinhar_painel_ia(painel)
 	alinhar_painel_ia(painel_ia_dir)
+	
 
 func alinhar_painel_ia(painel_alvo):
 	var centro_do_sol = sol.position + (sol.size / 2)
@@ -248,44 +264,34 @@ func alinhar_painel_ia(painel_alvo):
 	var angulo_sol_graus = rad_to_deg(direcao_ao_sol) + 90
 	
 	var estado_atual = obter_estado(angulo_sol_graus, painel_alvo.rotation_degrees)
-	
 	var acao_escolhida = escolher_acao(estado_atual, false)
 	
-	# Como a IA agora é decidida, aplicamos uma velocidade constante.
-	# O multiplicador 0.05 dita o quão rápido o motor do painel gira.
 	painel_alvo.rotation_degrees += (acao_escolhida * 0.05)
 
 func tocar_tiko(id: int):
 	if falas.has(id):
-		# 1. Coloca o texto completo no balão, mas ESCONDE todas as letras
-		tiko_label.text = "TIKO: " + falas[id]["texto"]
-		tiko_label.visible_ratio = 0.0 
-		
-		# 2. Carrega o áudio
-		audio_player.stream = falas[id]["audio"]
-		
-		# 3. Descobre exatamente quantos segundos o áudio tem!
-		var duracao_audio = audio_player.stream.get_length()
-		
-		# 4. Cria a animação de digitação sincronizada
-		var tween = create_tween()
-		# Opcional: Se quiser que o texto termine de digitar um pouquinho 
-		# antes da voz acabar, multiplique a duração por 0.9
-		var tempo_digitacao = duracao_audio * 0.9 
-		
-		# Anima o texto de 0.0 (vazio) para 1.0 (completo) no tempo exato da voz
-		tween.tween_property(tiko_label, "visible_ratio", 1.0, tempo_digitacao)
-		
-		# 5. Toca a voz
-		audio_player.play()
-		
-		# 6. Espera a voz terminar completamente antes de liberar o jogo
-		await audio_player.finished
+		# Manda a mensagem para a Cena Principal animar o texto
+		GameManager.tiko_diz.emit(falas[id]["texto"])
+		# Espera o GameManager avisar que terminou de animar
+		await GameManager.tiko_terminou_falar
+
+# Teclado: setas giram o painel do meio, Enter (ou Espaço) confirma
+func _unhandled_input(event):
+	if not alinhamento_ativo:
+		return
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.physical_keycode:
+			KEY_LEFT:
+				painel.girar_esquerda()
+			KEY_RIGHT:
+				painel.girar_direita()
+			KEY_ENTER, KEY_KP_ENTER, KEY_SPACE:
+				verificar_alinhamento()
 
 func modo_dialogo():
 	grupo_botoes.hide()
-	balao_fala.show()
+	GameManager.mostrar_balao.emit()
 
 func modo_jogo():
-	balao_fala.hide()
 	grupo_botoes.show()
+	GameManager.esconder_balao.emit()
