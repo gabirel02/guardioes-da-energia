@@ -1,0 +1,5 @@
+penalidade,episodios,execucoes,taxa_sucesso_media,desvio_taxa,erro_medio_graus,movimentos_medios,movimentos_minimos_medios
+0,100,30,83.33,5.41,23.16,3.49,4.05
+2,100,30,82.30,3.61,24.14,3.38,4.05
+5,100,30,81.03,4.31,25.55,3.36,4.05
+10,100,30,80.03,6.59,25.86,3.11,4.05

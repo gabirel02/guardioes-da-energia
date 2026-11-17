@@ -1,7 +1,96 @@
-[gd_scene load_steps=3 format=3 uid="uid://bguq2ji1rhmln"]
+[gd_scene load_steps=11 format=3 uid="uid://bguq2ji1rhmln"]
 
 [ext_resource type="Script" uid="uid://dj2kyd0el8gn7" path="res://scripts/cena_inicial.gd" id="1_f2vne"]
-[ext_resource type="Texture2D" path="res://assets/tela_inicial.png" id="2_bg01"]
+[ext_resource type="Texture2D" uid="uid://cokvxwq34cn1d" path="res://assets/tela_inicial.png" id="2_bg01"]
+
+[sub_resource type="Gradient" id="Gradient_pilula"]
+colors = PackedColorArray(0.055, 0.318, 0.655, 1, 0.012, 0.231, 0.478, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pilula"]
+gradient = SubResource("Gradient_pilula")
+width = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_titulo"]
+bg_color = Color(0.1843, 0.6157, 0.9922, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_painel"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secao"]
+bg_color = Color(0.86, 0.95, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao"]
+bg_color = Color(0.21960784, 0.7, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao_hover"]
+bg_color = Color(0.3, 0.82, 0.28, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_creditos"]
+bg_color = Color(0.06, 0.27, 0.62, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_creditos_hover"]
+bg_color = Color(0.12, 0.38, 0.78, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_logo"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [node name="CenaInicial" type="Node2D"]
 script = ExtResource("1_f2vne")
@@ -16,9 +105,94 @@ offset_right = 1280.0
 offset_bottom = 1000.0
 texture = ExtResource("2_bg01")
 expand_mode = 1
-stretch_mode = 0
+
+[node name="CobreEnergia" type="TextureRect" parent="."]
+offset_left = 1036.0
+offset_top = 42.0
+offset_right = 1106.0
+offset_bottom = 90.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_pilula")
+expand_mode = 1
+
+[node name="TextoEnergia" type="Label" parent="."]
+offset_left = 1034.0
+offset_top = 40.0
+offset_right = 1110.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 0.86, 0.1, 1)
+theme_override_colors/font_outline_color = Color(0.35, 0.22, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TituloJogo" type="Panel" parent="."]
+offset_left = 425.0
+offset_top = 15.0
+offset_right = 845.0
+offset_bottom = 215.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_titulo")
+
+[node name="Guardioes" type="Label" parent="TituloJogo"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 410.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.22, 0.42, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 44
+text = "Guardiões"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DaEnergia" type="Label" parent="TituloJogo"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 95.0
+offset_right = 410.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0.6, 0.85, 0.15, 1)
+theme_override_colors/font_outline_color = Color(0.13, 0.35, 0.03, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 44
+text = "da Energia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogoMenu" type="Panel" parent="."]
+offset_left = 16.0
+offset_top = 118.0
+offset_right = 246.0
+offset_bottom = 218.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_logo")
+
+[node name="Imagem" type="TextureRect" parent="LogoMenu"]
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 220.0
+offset_bottom = 94.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Provisorio" type="Label" parent="LogoMenu"]
+offset_right = 230.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 22
+text = "LOGO UTFPR"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CamadaBotoes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 1000.0
 mouse_filter = 2
@@ -30,7 +204,62 @@ offset_top = 839.5
 offset_right = 1263.1
 offset_bottom = 956.5
 flat = true
-text = ""
+
+[node name="BotaoSom" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 23.0
+offset_right = 312.0
+offset_bottom = 107.0
+flat = true
+
+[node name="FundoMudo" type="Panel" parent="CamadaBotoes/BotaoSom"]
+visible = false
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 84.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_painel")
+
+[node name="TextoMudo" type="Label" parent="CamadaBotoes/BotaoSom"]
+visible = false
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.1, 0.3, 0.55, 1)
+theme_override_font_sizes/font_size = 24
+text = "🔇 Mudo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PainelVolume" type="Panel" parent="CamadaBotoes"]
+visible = false
+layout_mode = 0
+offset_left = 155.0
+offset_top = 115.0
+offset_right = 365.0
+offset_bottom = 208.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_painel")
+
+[node name="TituloVolume" type="Label" parent="CamadaBotoes/PainelVolume"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 194.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 22
+text = "Volume"
+
+[node name="SliderVolume" type="HSlider" parent="CamadaBotoes/PainelVolume"]
+modulate = Color(0.18431373, 0.6156863, 0.99215686, 1)
+self_modulate = Color(0.18431373, 0.6156863, 0.99215686, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 194.0
+offset_bottom = 64.0
+value = 100.0
 
 [node name="IconeSolar" type="Button" parent="CamadaBotoes"]
 layout_mode = 0
@@ -39,7 +268,6 @@ offset_top = 244.4
 offset_right = 329.2
 offset_bottom = 552.6
 flat = true
-text = ""
 
 [node name="IconeEolica" type="Button" parent="CamadaBotoes"]
 layout_mode = 0
@@ -48,7 +276,6 @@ offset_top = 244.4
 offset_right = 1263.1
 offset_bottom = 616.4
 flat = true
-text = ""
 
 [node name="IconeHidro" type="Button" parent="CamadaBotoes"]
 layout_mode = 0
@@ -57,7 +284,14 @@ offset_top = 690.7
 offset_right = 803.8
 offset_bottom = 1000.0
 flat = true
-text = ""
+
+[node name="BotaoAjuda" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 23.0
+offset_right = 144.0
+offset_bottom = 107.0
+flat = true
 
 [node name="BotaoSair" type="Button" parent="CamadaBotoes"]
 layout_mode = 0
@@ -66,10 +300,342 @@ offset_top = 28.0
 offset_right = 1266.0
 offset_bottom = 108.0
 flat = true
-text = ""
+
+[node name="BotaoCreditos" type="Button" parent="CamadaBotoes"]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 122.0
+offset_right = 1266.0
+offset_bottom = 182.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_creditos")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_creditos")
+theme_override_styles/hover = SubResource("StyleBoxFlat_creditos_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = "Créditos"
+
+[node name="CamadaAjuda" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="FundoEscuro" type="ColorRect" parent="CamadaAjuda"]
+offset_right = 1280.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="PainelAjuda" type="Panel" parent="CamadaAjuda"]
+offset_left = 40.0
+offset_top = 45.0
+offset_right = 1240.0
+offset_bottom = 955.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_painel")
+
+[node name="Titulo" type="Label" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 15.0
+offset_right = 1170.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 48
+text = "Como Jogar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Introducao" type="Label" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 85.0
+offset_right = 1160.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "Olá, Guardião! Precisamos da sua ajuda!
+Nossa cidade está sem energia! Ajude o Tiko a ligar as três usinas e trazer a luz de volta!
+Clique em VAMOS JOGAR para participar da aventura completa.
+Ou escolha uma usina para jogar somente aquela fase."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SecaoSolar" type="Panel" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 260.0
+offset_right = 390.0
+offset_bottom = 790.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_secao")
+
+[node name="Titulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoSolar"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 342.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 30
+text = "Usina Solar"
+
+[node name="Subtitulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoSolar"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 342.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 21
+text = "Vamos usar a luz do sol para produzir energia!"
+autowrap_mode = 3
+
+[node name="Texto" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoSolar"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 124.0
+offset_right = 342.0
+offset_bottom = 515.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 21
+text = "1. Passe o mouse nas manchas para limpar os painéis solares.
+2. Clique em GIRAR ou use as setas do teclado para virar o painel em direção ao sol.
+3. Quando estiver na posição certa, clique em CONFIRMAR ou aperte ENTER."
+autowrap_mode = 3
+
+[node name="SecaoEolica" type="Panel" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 260.0
+offset_right = 780.0
+offset_bottom = 790.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_secao")
+
+[node name="Titulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoEolica"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 342.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 30
+text = "Usina do Vento"
+
+[node name="Subtitulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoEolica"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 342.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 21
+text = "Vamos aproveitar a força do vento!"
+autowrap_mode = 3
+
+[node name="Texto" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoEolica"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 124.0
+offset_right = 342.0
+offset_bottom = 515.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 21
+text = "1. Fique atento ao aviso VEM VENTO FORTE!
+2. Quando o vento ficar forte, segure o botão FREIO ou a tecla ESPAÇO para proteger a turbina.
+3. Quando o vento ficar fraco, solte o freio para produzir energia."
+autowrap_mode = 3
+
+[node name="SecaoHidro" type="Panel" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 260.0
+offset_right = 1170.0
+offset_bottom = 790.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_secao")
+
+[node name="Titulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoHidro"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 342.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 30
+text = "Usina da Água"
+
+[node name="Subtitulo" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoHidro"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 342.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 21
+text = "Vamos controlar a água da represa!"
+autowrap_mode = 3
+
+[node name="Texto" type="Label" parent="CamadaAjuda/PainelAjuda/SecaoHidro"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 124.0
+offset_right = 342.0
+offset_bottom = 515.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 21
+text = "1. Observe a barra azul, que mostra a quantidade de água.
+2. Mantenha a água na faixa verde IDEAL durante 1 minuto.
+3. Se a água subir demais, clique em ABRIR COMPORTA ou aperte A.
+4. Se a água baixar demais, clique em FECHAR COMPORTA ou aperte F."
+autowrap_mode = 3
+
+[node name="Fechamento" type="Label" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 798.0
+offset_right = 1170.0
+offset_bottom = 838.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 26
+text = "Pronto para começar? Vamos devolver a energia à cidade!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnFechar" type="Button" parent="CamadaAjuda/PainelAjuda"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 842.0
+offset_right = 750.0
+offset_bottom = 902.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_botao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botao_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = "Entendi!"
+
+[node name="CamadaCreditos" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="FundoEscuro" type="ColorRect" parent="CamadaCreditos"]
+offset_right = 1280.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="PainelCreditos" type="Panel" parent="CamadaCreditos"]
+offset_left = 190.0
+offset_top = 110.0
+offset_right = 1090.0
+offset_bottom = 890.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_painel")
+
+[node name="Titulo" type="Label" parent="CamadaCreditos/PainelCreditos"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 870.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 48
+text = "Créditos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NomeJogo" type="Label" parent="CamadaCreditos/PainelCreditos"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 90.0
+offset_right = 870.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(0.13, 0.5, 0.1, 1)
+theme_override_font_sizes/font_size = 34
+text = "Guardiões da Energia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texto" type="Label" parent="CamadaCreditos/PainelCreditos"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 150.0
+offset_right = 860.0
+offset_bottom = 560.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 4
+theme_override_font_sizes/font_size = 23
+text = "Projeto: Uso da inteligência artificial em aplicações computacionais
+Desenvolvimento: Gabriel Jose Monteiro
+Orientação: Profa. Helyane Bronoski Borges
+
+LESIC — Laboratório de Engenharia de Software e Inteligência Computacional
+Universidade Tecnológica Federal do Paraná (UTFPR)
+
+Vozes do Tiko: geradas com ElevenLabs
+Música: Pixabay
+Imagens: Pixabay, SVG Repo e geradas com ChatGPT (OpenAI)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LogoUTFPR" type="Panel" parent="CamadaCreditos/PainelCreditos"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 570.0
+offset_right = 580.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_logo")
+
+[node name="Imagem" type="TextureRect" parent="CamadaCreditos/PainelCreditos/LogoUTFPR"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 250.0
+offset_bottom = 102.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Provisorio" type="Label" parent="CamadaCreditos/PainelCreditos/LogoUTFPR"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 24
+text = "LOGO UTFPR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnFechar" type="Button" parent="CamadaCreditos/PainelCreditos"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 695.0
+offset_right = 600.0
+offset_bottom = 755.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_botao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botao_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = "Fechar"
 
 [connection signal="pressed" from="CamadaBotoes/BotaoSair" to="." method="_on_botao_sair_pressed"]
+[connection signal="pressed" from="CamadaBotoes/BotaoCreditos" to="." method="_on_botao_creditos_pressed"]
+[connection signal="pressed" from="CamadaCreditos/PainelCreditos/BtnFechar" to="." method="_on_btn_fechar_creditos_pressed"]
 [connection signal="pressed" from="CamadaBotoes/BotaoVamosJogar" to="." method="_on_botao_jogar_pressed"]
+[connection signal="pressed" from="CamadaBotoes/BotaoSom" to="." method="_on_botao_som_pressed"]
+[connection signal="value_changed" from="CamadaBotoes/PainelVolume/SliderVolume" to="." method="_on_slider_volume_value_changed"]
 [connection signal="pressed" from="CamadaBotoes/IconeSolar" to="." method="_on_btn_solar_pressed"]
 [connection signal="pressed" from="CamadaBotoes/IconeEolica" to="." method="_on_btn_eolica_pressed"]
 [connection signal="pressed" from="CamadaBotoes/IconeHidro" to="." method="_on_btn_hidro_pressed"]
+[connection signal="pressed" from="CamadaBotoes/BotaoAjuda" to="." method="_on_botao_ajuda_pressed"]
+[connection signal="pressed" from="CamadaAjuda/PainelAjuda/BtnFechar" to="." method="_on_btn_fechar_ajuda_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwokj1frymroa"]
+[gd_scene load_steps=16 format=3 uid="uid://cwokj1frymroa"]
 
 [ext_resource type="Script" uid="uid://wfcs4i7t8bdx" path="res://scripts/cena_principal.gd" id="1_ikat4"]
 [ext_resource type="Texture2D" uid="uid://drf3ocuklqwgr" path="res://assets/robot.png" id="2_ymfkh"]
@@ -87,12 +87,46 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botaopausa"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botaopausa_hover"]
+bg_color = Color(0.8, 0.94, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 8
+border_color = Color(0.02745098, 0.7411765, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botaoazul"]
+bg_color = Color(0.02745098, 0.6, 0.85, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="CenaPrincipal_tscn" type="Node"]
 script = ExtResource("1_ikat4")
+process_mode = 3
 
 [node name="ContentorDeFase" type="Node" parent="."]
+process_mode = 1
 
 [node name="InterfaceTiko" type="CanvasLayer" parent="."]
+process_mode = 1
 
 [node name="FundoBarra" type="Panel" parent="InterfaceTiko"]
 anchors_preset = 12
@@ -151,7 +185,7 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 172.0
 offset_top = 16.0
-offset_right = 1262.0
+offset_right = 1110.0
 offset_bottom = 136.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_307yd")
 
@@ -177,6 +211,33 @@ polygon = PackedVector2Array(6, 37, 6, 83, -22, 60)
 
 [node name="CaudaFundo" type="Polygon2D" parent="InterfaceTiko/FundoBarra/BalaoFala"]
 polygon = PackedVector2Array(8, 42, 8, 78, -14, 60)
+
+[node name="BtnPausar" type="Button" parent="InterfaceTiko/FundoBarra"]
+layout_mode = 0
+offset_left = 1130.0
+offset_top = 20.0
+offset_right = 1262.0
+offset_bottom = 132.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_colors/font_hover_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_colors/font_pressed_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_botaopausa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botaopausa_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botaopausa_hover")
+text = "PAUSAR"
+
+[node name="Tecla" type="Label" parent="InterfaceTiko/FundoBarra/BtnPausar"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 132.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.3, 0.45, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+text = "(tecla Esc)"
+horizontal_alignment = 1
 
 [node name="FundoControles" type="Panel" parent="InterfaceTiko"]
 offset_top = 720.0
@@ -224,6 +285,15 @@ layout_mode = 0
 offset_top = 105.0
 offset_right = 640.0
 offset_bottom = 195.0
+mouse_filter = 2
+
+[node name="ResumoFases" type="Control" parent="CamadaVitoria/PopUpVitoria"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 290.0
+offset_right = 580.0
+offset_bottom = 440.0
 mouse_filter = 2
 
 [node name="LabelPontuacao" type="Label" parent="CamadaVitoria/PopUpVitoria"]
@@ -328,5 +398,90 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tutbotao_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tutbotao")
 text = "Entendi!"
 
+[node name="CamadaPausa" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 6
+visible = false
+
+[node name="FundoEscuro" type="ColorRect" parent="CamadaPausa"]
+offset_right = 1280.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="PainelPausa" type="Panel" parent="CamadaPausa"]
+offset_left = 380.0
+offset_top = 260.0
+offset_right = 900.0
+offset_bottom = 740.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tutpainel")
+
+[node name="Titulo" type="Label" parent="CamadaPausa/PainelPausa"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 48
+text = "Jogo pausado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CamadaPausa/PainelPausa"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 130.0
+offset_right = 460.0
+offset_bottom = 430.0
+theme_override_constants/separation = 20
+
+[node name="BtnContinuar" type="Button" parent="CamadaPausa/PainelPausa/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_tutbotao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tutbotao_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tutbotao")
+text = "Continuar"
+
+[node name="BtnVerDicas" type="Button" parent="CamadaPausa/PainelPausa/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_botaoazul")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botaopausa_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botaoazul")
+text = "Ver dicas de novo"
+
+[node name="BtnMenuPausa" type="Button" parent="CamadaPausa/PainelPausa/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_botaosair")
+theme_override_styles/hover = SubResource("StyleBoxFlat_botaosair_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_botaosair")
+text = "Voltar ao menu"
+
+[node name="CamadaFade" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+
+[node name="Cortina" type="ColorRect" parent="CamadaFade"]
+offset_right = 1280.0
+offset_bottom = 1000.0
+mouse_filter = 2
+color = Color(0.05, 0.25, 0.45, 1)
+
 [connection signal="pressed" from="CamadaVitoria/PopUpVitoria/VBoxContainer/BtnMenu" to="." method="_on_btn_menu_pressed"]
-[connection signal="pressed" from="CamadaVitoria/PopUpVitoria/VBoxContainer/BtnSair" to="." method="_on_btn_sair_pressed"]

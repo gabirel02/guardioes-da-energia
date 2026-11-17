@@ -439,6 +439,6 @@ horizontal_alignment = 1
 [connection signal="mouse_entered" from="PainelIA_Dir/Sujeira3" to="PainelIA_Dir/Sujeira3" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelIA_Dir/Sujeira4" to="PainelIA_Dir/Sujeira4" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="PainelIA_Dir/Sujeira5" to="PainelIA_Dir/Sujeira5" method="_on_mouse_entered"]
-[connection signal="pressed" from="CamadaBotoes/BarraInferior/GrupoBotoes/BotaoEsquerda" to="PainelSolar" method="girar_esquerda"]
-[connection signal="pressed" from="CamadaBotoes/BarraInferior/GrupoBotoes/BotaoDireito" to="PainelSolar" method="girar_direita"]
+[connection signal="pressed" from="CamadaBotoes/BarraInferior/GrupoBotoes/BotaoEsquerda" to="." method="_on_girar_esquerda"]
+[connection signal="pressed" from="CamadaBotoes/BarraInferior/GrupoBotoes/BotaoDireito" to="." method="_on_girar_direita"]
 [connection signal="pressed" from="CamadaBotoes/BarraInferior/GrupoBotoes/BotaoConfirmar" to="." method="verificar_alinhamento"]

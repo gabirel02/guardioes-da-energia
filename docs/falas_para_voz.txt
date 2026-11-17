@@ -1,0 +1,55 @@
+1. Olá! Eu sou o Tiko, seu amigo robô! Precisamos da sua ajuda! Nossa cidade ficou sem energia!
+2. As três usinas de energia pararam de funcionar! E agora? Como vamos iluminar a cidade?
+3. Vamos trabalhar juntos para ligar as três usinas: a do sol, a do vento e a da água!
+4. E temos um ajudante especial: o robô aprendiz! Ele vai aprender com você! Preparado para essa aventura?
+5. Antes de começar, vou mostrar como jogar! Preste atenção nas dicas!
+6. Vamos começar pela usina solar! Os painéis estão sujos! Passe o mouse nas manchas para limpar!
+7. Você está indo muito bem! Faltam só duas manchas! Continue assim!
+8. Que beleza! Os painéis estão limpinhos! Agora eles podem receber a luz do sol!
+9. Agora, vamos virar o painel do meio para o sol! Quando terminar, clique em CONFIRMAR!
+10. Muito bem! O robô aprendiz está aprendendo com você! Olha só! O sol mudou de posição!
+11. Agora é a vez do robô aprendiz! Vamos ver se ele consegue virar os painéis sozinho!
+12. Oba! Ele conseguiu! O robô aprendeu e virou os painéis para o sol! Parabéns!
+13. Ops! Ainda não deu certo! Mas tudo bem! Nosso robô precisa aprender um pouquinho mais!
+14. Olha que legal! O sol muda de posição e o robô acompanha, virando os painéis!
+15. Conseguimos! A usina solar está funcionando! As casas já têm energia! Agora vamos para a usina do vento!
+16. Parabéns! Você conseguiu ligar a usina solar! Agora as casas têm energia!
+17. Chegamos à usina do vento! Aqui, o vento ajuda a produzir energia! Mas cuidado com o vento forte!
+18. Vamos tentar outra vez! Quando o vento ficar forte, segure o botão FREIO ou a tecla ESPAÇO!
+19. Atenção! Vem vento forte por aí! Prepare o freio!
+20. Vento forte! Segure o FREIO agora!
+21. O vento ficou fraco! Pode soltar o FREIO para produzir energia!
+22. Olha só! O robô aprendiz preparou novos ventos! Vamos ver como você se sai!
+23. Oba! A usina do vento está funcionando! A escola já tem energia! Agora vamos para a usina da água!
+24. Muito bem! Você conseguiu ligar a usina do vento! Agora a escola tem energia!
+25. Ops! O vento estava muito forte e a turbina quebrou! Vamos tentar de novo?
+26. Chegamos à usina da água! Aqui, precisamos cuidar da água da represa! O robô aprendiz vai mudar o tempo!
+27. Vamos tentar novamente! Fique de olho na barra azul! Ela mostra a quantidade de água!
+28. O sol apareceu! Agora a água da represa sobe bem devagar!
+29. Começou a chover! Olhe só! A água da represa está subindo!
+30. Cuidado! Uma tempestade! A água está subindo muito rápido!
+31. Comporta aberta! A água está saindo e fazendo a turbina girar!
+32. Comporta fechada! Agora a água fica guardada na represa!
+33. Viva! Conseguimos ligar as três usinas! Agora toda a cidade tem energia! Você é um verdadeiro Guardião da Energia!
+34. Parabéns! Você ligou a usina da água! Agora as ruas da cidade têm energia!
+35. Ops! A represa ficou cheia demais e a água transbordou! Na próxima, abra a comporta um pouco antes!
+36. Ah, não! A água da represa acabou e a turbina parou! Na próxima, feche a comporta um pouco antes!
+37. Você sabia? Os painéis solares recebem a luz do sol e a transformam em energia elétrica!
+38. Primeiro, vamos limpar os painéis! Passe o mouse sobre as manchas até elas desaparecerem!
+39. Agora, clique em GIRAR ou use as setas do teclado para virar o painel do meio em direção ao sol!
+40. Quando o painel estiver virado para o sol, clique em CONFIRMAR ou aperte ENTER!
+41. Preste atenção! O robô aprendiz observa como você joga! Depois, ele vai tentar fazer tudo sozinho!
+42. Você sabia? O vento faz as hélices girarem! Assim, a usina produz energia elétrica!
+43. O robô aprendiz vai mandar ventos fortes! Antes de cada vento forte, um aviso vai aparecer na tela!
+44. Quando aparecer o aviso, prepare-se! Segure o botão vermelho FREIO ou a tecla ESPAÇO!
+45. Quando o vento ficar fraco, solte o FREIO! Assim, a turbina volta a produzir energia!
+46. Você precisa cuidar da turbina por um minuto e meio! Não deixe a barra vermelha encher, senão a turbina quebra!
+47. Você sabia? A água da represa passa pela turbina e faz ela girar! Assim, produzimos energia elétrica!
+48. O robô aprendiz vai escolher o tempo: sol, chuva ou tempestade! Cada um muda a quantidade de água da represa!
+49. Olhe a barra azul! Ela mostra a quantidade de água! Mantenha a água na faixa verde por um minuto!
+50. A água está subindo demais? Clique em ABRIR COMPORTA ou aperte a tecla A para deixar a água sair!
+51. A água está baixando demais? Clique em FECHAR COMPORTA ou aperte a tecla F para guardar a água!
+52. Uau! Três estrelas! Você arrasou! É um verdadeiro Guardião da Energia!
+53. Muito bem! Duas estrelas! Você está aprendendo cada vez mais!
+54. Boa! Você ganhou uma estrela! Que tal tentar outra vez para conquistar mais?
+55. Olá, Guardião! Nossa cidade precisa de você! Vamos começar essa aventura?

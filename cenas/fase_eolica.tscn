@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qkrii7k1sjut"]
+[gd_scene load_steps=16 format=3 uid="uid://qkrii7k1sjut"]
 
 [ext_resource type="Script" uid="uid://burh7h880th2b" path="res://scripts/fase_eolica.gd" id="1_rj6nv"]
 [ext_resource type="Texture2D" uid="uid://lp0a4vu1fp14" path="res://assets/fundoEolica.png" id="2_fqgoa"]
@@ -72,6 +72,18 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
 
+[sub_resource type="Gradient" id="Gradient_rastro"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rastro"]
+gradient = SubResource("Gradient_rastro")
+width = 96
+height = 5
+
+[sub_resource type="Gradient" id="Gradient_aparecer"]
+offsets = PackedFloat32Array(0, 0.15, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="FaseEolica" type="Node2D"]
 script = ExtResource("1_rj6nv")
 
@@ -87,16 +99,22 @@ texture = ExtResource("2_fqgoa")
 expand_mode = 2
 
 [node name="ParticulasVento" type="CPUParticles2D" parent="."]
-position = Vector2(-150, 360)
-scale = Vector2(0.1, 0.1)
-amount = 20
-lifetime = 3.0
+position = Vector2(-60, 330)
+amount = 40
+lifetime = 4.0
+preprocess = 4.0
+texture = SubResource("GradientTexture2D_rastro")
 emission_shape = 3
-emission_rect_extents = Vector2(1, 360)
+emission_rect_extents = Vector2(1, 300)
+direction = Vector2(1, 0)
+spread = 3.0
 gravity = Vector2(0, 0)
-initial_velocity_max = 300.0
-scale_amount_min = 0.05
-scale_amount_max = 0.15
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+color = Color(1, 1, 1, 0.5)
+color_ramp = SubResource("Gradient_aparecer")
 
 [node name="TurbinaEsq" type="Node2D" parent="."]
 
@@ -137,6 +155,24 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_q3pl7")
 offset = Vector2(0, -88)
 
+[node name="ParticulasVentoForte" type="CPUParticles2D" parent="."]
+position = Vector2(-60, 330)
+emitting = false
+amount = 70
+lifetime = 2.5
+texture = SubResource("GradientTexture2D_rastro")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 300)
+direction = Vector2(1, 0.05)
+spread = 6.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 800.0
+initial_velocity_max = 1000.0
+scale_amount_min = 1.2
+scale_amount_max = 2.2
+color = Color(1, 1, 1, 0.85)
+color_ramp = SubResource("Gradient_aparecer")
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -166,6 +202,42 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_fundobarra")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ol8c7")
 show_percentage = false
+
+[node name="PainelIA" type="Panel" parent="HUD"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 22.0
+offset_right = 815.0
+offset_bottom = 90.0
+pivot_offset = Vector2(175, 34)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_painelvento")
+
+[node name="TextoIA" type="Label" parent="HUD/PainelIA"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 24
+text = "Robô aprendiz: nível 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoTempo" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 96.0
+offset_right = 840.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.25, 0.45, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "TEMPO: faltam 90 s"
+horizontal_alignment = 1
 
 [node name="TextoDano" type="Label" parent="HUD"]
 layout_mode = 0
